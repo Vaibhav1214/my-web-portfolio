@@ -6,7 +6,7 @@ import './App.css'
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-  
+
   // Contact Form State
   const [formName, setFormName] = useState('')
   const [formEmail, setFormEmail] = useState('')
@@ -53,7 +53,7 @@ function App() {
     e.preventDefault()
     if (formName && formEmail && formMessage) {
       try {
-        const response = await fetch("https://formsubmit.co/ajax/mishravaibhav1214@gmail.com", {
+        const response = await fetch("https://formsubmit.co/ajax/8f5396fa2bddedef31340dd866df652e", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -66,14 +66,14 @@ function App() {
             _subject: `New Portfolio Message from ${formName}`
           })
         })
-        
+
         if (response.ok) {
           setFormSubmitted(true)
           // Reset fields
           setFormName('')
           setFormEmail('')
           setFormMessage('')
-          
+
           // Clear success message after 5 seconds
           setTimeout(() => {
             setFormSubmitted(false)
@@ -96,9 +96,9 @@ function App() {
           <div className="logo" id="portfolio-logo">
             Vaibhav<span>.</span>
           </div>
-          
-          <button 
-            className="menu-toggle" 
+
+          <button
+            className="menu-toggle"
             id="mobile-nav-toggle"
             onClick={toggleMobileMenu}
             aria-label="Toggle Navigation Menu"
@@ -108,8 +108,8 @@ function App() {
 
           <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`} id="navigation-links-list">
             <li>
-              <a 
-                href="#home" 
+              <a
+                href="#home"
                 id="nav-link-home"
                 className={activeSection === 'home' ? 'active' : ''}
                 onClick={(e) => { e.preventDefault(); handleLinkClick('home'); }}
@@ -118,8 +118,8 @@ function App() {
               </a>
             </li>
             <li>
-              <a 
-                href="#about" 
+              <a
+                href="#about"
                 id="nav-link-about"
                 className={activeSection === 'about' ? 'active' : ''}
                 onClick={(e) => { e.preventDefault(); handleLinkClick('about'); }}
@@ -128,8 +128,8 @@ function App() {
               </a>
             </li>
             <li>
-              <a 
-                href="#projects" 
+              <a
+                href="#projects"
                 id="nav-link-projects"
                 className={activeSection === 'projects' ? 'active' : ''}
                 onClick={(e) => { e.preventDefault(); handleLinkClick('projects'); }}
@@ -138,8 +138,8 @@ function App() {
               </a>
             </li>
             <li>
-              <a 
-                href="#skills" 
+              <a
+                href="#skills"
                 id="nav-link-skills"
                 className={activeSection === 'skills' ? 'active' : ''}
                 onClick={(e) => { e.preventDefault(); handleLinkClick('skills'); }}
@@ -148,8 +148,8 @@ function App() {
               </a>
             </li>
             <li>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 id="nav-link-contact"
                 className={activeSection === 'contact' ? 'active' : ''}
                 onClick={(e) => { e.preventDefault(); handleLinkClick('contact'); }}
@@ -174,19 +174,19 @@ function App() {
             <span className="text-gradient">React Experiences</span>
           </h1>
           <p className="hero-desc" id="hero-description-paragraph">
-            Hi, I'm Vaibhav. I design and build high-performance web applications 
+            Hi, I'm Vaibhav. I design and build high-performance web applications
             with pixel-perfect layouts, modern interactions, and robust user interfaces.
           </p>
           <div className="cta-group">
-            <button 
-              className="btn btn-primary" 
+            <button
+              className="btn btn-primary"
               id="cta-btn-projects"
               onClick={() => handleLinkClick('projects')}
             >
               View My Work
             </button>
-            <button 
-              className="btn btn-secondary" 
+            <button
+              className="btn btn-secondary"
               id="cta-btn-contact"
               onClick={() => handleLinkClick('contact')}
             >
@@ -201,10 +201,10 @@ function App() {
         <div className="about-grid">
           <div className="about-img-container">
             <div className="about-img-wrapper" id="about-image-wrapper-element">
-              <img 
-                src={avatarImg} 
-                alt="Vaibhav Profile Avatar" 
-                className="about-img" 
+              <img
+                src={avatarImg}
+                alt="Vaibhav Profile Avatar"
+                className="about-img"
                 id="about-profile-image"
               />
             </div>
@@ -212,15 +212,15 @@ function App() {
           <div className="about-text">
             <h2 className="section-title text-gradient" id="about-section-heading">About Myself</h2>
             <p className="about-paragraph" id="about-desc-p1">
-              I am a web application developer with a passion for designing slick, 
-              responsive, and user-centric interfaces. My journey is focused on combining 
+              I am a web application developer with a passion for designing slick,
+              responsive, and user-centric interfaces. My journey is focused on combining
               clean technical architecture with polished design.
             </p>
             <p className="about-paragraph" id="about-desc-p2">
-              Using React, modern state management, and optimized workflows, I convert complex 
+              Using React, modern state management, and optimized workflows, I convert complex
               concepts into functional code that renders beautifully across all devices.
             </p>
-            
+
             <div className="about-stats" id="about-stats-grid">
               <div className="stat-card" id="stat-card-experience">
                 <div className="stat-number">3+</div>
@@ -398,14 +398,14 @@ function App() {
       {/* Contact Section */}
       <section className="section-padding container" id="contact">
         <h2 className="section-title text-gradient" id="contact-section-heading">Let's Connect</h2>
-        
+
         <div className="contact-grid">
           <div className="contact-info" id="portfolio-contact-info-panel">
             <h3 className="contact-title" id="contact-panel-heading">Have a project in mind?</h3>
             <p className="contact-desc" id="contact-panel-description">
               I am currently open to project ideas, collaborations, and web development opportunities. Use the contact form or email me directly.
             </p>
-            
+
             <div className="contact-details" id="contact-details-list">
               <div className="contact-item" id="contact-item-email">
                 <div className="contact-icon-wrapper">✉</div>
@@ -416,7 +416,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="contact-item" id="contact-item-location">
                 <div className="contact-icon-wrapper">📍</div>
                 <div>
@@ -433,48 +433,48 @@ function App() {
                 ✓ Message sent successfully! I will get back to you soon.
               </div>
             )}
-            
+
             <div className="form-group" id="form-group-name">
               <label htmlFor="contact-name">Name</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                id="contact-name" 
-                required 
+              <input
+                type="text"
+                className="form-control"
+                id="contact-name"
+                required
                 placeholder="Your Name"
                 value={formName}
                 onChange={(e) => setFormName(e.target.value)}
               />
             </div>
-            
+
             <div className="form-group" id="form-group-email">
               <label htmlFor="contact-email">Email</label>
-              <input 
-                type="email" 
-                className="form-control" 
-                id="contact-email" 
-                required 
+              <input
+                type="email"
+                className="form-control"
+                id="contact-email"
+                required
                 placeholder="your.email@example.com"
                 value={formEmail}
                 onChange={(e) => setFormEmail(e.target.value)}
               />
             </div>
-            
+
             <div className="form-group" id="form-group-message">
               <label htmlFor="contact-message">Message</label>
-              <textarea 
-                className="form-control" 
-                id="contact-message" 
-                required 
+              <textarea
+                className="form-control"
+                id="contact-message"
+                required
                 placeholder="Write your message here..."
                 value={formMessage}
                 onChange={(e) => setFormMessage(e.target.value)}
               />
             </div>
-            
-            <button 
-              type="submit" 
-              className="btn btn-primary" 
+
+            <button
+              type="submit"
+              className="btn btn-primary"
               id="contact-submit-button"
             >
               Send Message
