@@ -496,9 +496,19 @@
   margin-bottom: 2px;
 }
 
+/* Contact Value Style */
 .contact-value {
   font-size: 15px;
   font-weight: 500;
+}
+
+.contact-value a {
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+
+.contact-value a:hover {
+  color: var(--accent-orange);
 }
 
 .contact-form {

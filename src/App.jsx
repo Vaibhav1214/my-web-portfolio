@@ -388,7 +388,9 @@ function App() {
                 <div className="contact-icon-wrapper">✉</div>
                 <div>
                   <div className="contact-label">Mail Me</div>
-                  <div className="contact-value">vaibhav@example.com</div>
+                  <div className="contact-value">
+                    <a href="mailto:mishravaibhav1214@gmail.com" id="contact-email-link">mishravaibhav1214@gmail.com</a>
+                  </div>
                 </div>
               </div>
               
