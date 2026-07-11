@@ -49,19 +49,42 @@ function App() {
     }
   }
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault()
     if (formName && formEmail && formMessage) {
-      setFormSubmitted(true)
-      // Reset fields
-      setFormName('')
-      setFormEmail('')
-      setFormMessage('')
-      
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        setFormSubmitted(false)
-      }, 5000)
+      try {
+        const response = await fetch("https://formsubmit.co/ajax/mishravaibhav1214@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: formName,
+            email: formEmail,
+            message: formMessage,
+            _subject: `New Portfolio Message from ${formName}`
+          })
+        })
+        
+        if (response.ok) {
+          setFormSubmitted(true)
+          // Reset fields
+          setFormName('')
+          setFormEmail('')
+          setFormMessage('')
+          
+          // Clear success message after 5 seconds
+          setTimeout(() => {
+            setFormSubmitted(false)
+          }, 5000)
+        } else {
+          alert("Oops! Something went wrong while sending the message. Please try again.")
+        }
+      } catch (error) {
+        console.error("Error submitting contact form:", error)
+        alert("Oops! There was a network connection error. Please try again later.")
+      }
     }
   }
 
