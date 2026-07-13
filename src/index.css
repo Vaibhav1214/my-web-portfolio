@@ -1,34 +1,34 @@
 /* Base Reset and Fonts */
 :root {
-  /* Color Palette: Deep Blue and Orangish Yellow */
-  --bg-primary: hsl(220, 40%, 8%);
-  --bg-secondary: hsl(220, 35%, 13%);
-  --bg-tertiary: hsl(220, 30%, 18%);
+  /* Color Palette: Black, White, and Grayscale Shades */
+  --bg-primary: hsl(0, 0%, 5%);
+  --bg-secondary: hsl(0, 0%, 10%);
+  --bg-tertiary: hsl(0, 0%, 15%);
   
-  --accent-orange: hsl(38, 100%, 55%);
-  --accent-orange-light: hsl(43, 100%, 63%);
-  --accent-orange-glow: hsla(38, 100%, 55%, 0.35);
+  --accent-orange: hsl(0, 0%, 95%);
+  --accent-orange-light: hsl(0, 0%, 100%);
+  --accent-orange-glow: hsla(0, 0%, 100%, 0.15);
   
-  --accent-blue: hsl(205, 90%, 50%);
-  --accent-blue-light: hsl(205, 100%, 65%);
-  --accent-blue-glow: hsla(205, 90%, 50%, 0.25);
+  --accent-blue: hsl(0, 0%, 45%);
+  --accent-blue-light: hsl(0, 0%, 75%);
+  --accent-blue-glow: hsla(0, 0%, 75%, 0.1);
   
-  --text-primary: hsl(210, 20%, 98%);
-  --text-secondary: hsl(215, 15%, 75%);
-  --text-muted: hsl(215, 12%, 55%);
+  --text-primary: hsl(0, 0%, 96%);
+  --text-secondary: hsl(0, 0%, 78%);
+  --text-muted: hsl(0, 0%, 55%);
   
-  --border-color: hsl(220, 25%, 22%);
-  --border-glow: hsla(38, 100%, 55%, 0.2);
+  --border-color: hsl(0, 0%, 20%);
+  --border-glow: hsla(0, 0%, 100%, 0.08);
   
   --font-heading: 'Outfit', 'Inter', sans-serif;
   --font-body: 'Inter', sans-serif;
   
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
-  --shadow-glow-orange: 0 0 20px var(--accent-orange-glow);
-  --shadow-glow-blue: 0 0 20px var(--accent-blue-glow);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+  --shadow-glow-orange: 0 0 25px var(--accent-orange-glow);
+  --shadow-glow-blue: 0 0 25px var(--accent-blue-glow);
   
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -124,7 +124,7 @@ a {
     box-shadow: 0 0 15px var(--accent-orange-glow);
   }
   50% {
-    box-shadow: 0 0 25px hsla(38, 100%, 55%, 0.6);
+    box-shadow: 0 0 25px hsla(0, 0%, 100%, 0.3);
   }
 }
 
