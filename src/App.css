@@ -191,7 +191,7 @@
 /* About Section */
 .about-grid {
   display: grid;
-  grid-template-cols: 1fr 1.2fr;
+  grid-template-cols: 1.2fr 1fr;
   gap: 60px;
   align-items: center;
 }
@@ -200,6 +200,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  order: 2;
 }
 
 .about-img-wrapper {
@@ -228,6 +229,7 @@
 
 .about-text {
   text-align: left;
+  order: 1;
 }
 
 .section-title {
