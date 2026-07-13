@@ -47,4 +47,4 @@ To run this project locally:
 This project is configured for automated deployment to **GitHub Pages** via GitHub Actions.
 
 On every push to the `main` branch, the [Deploy to GitHub Pages](file:///.github/workflows/deploy.yml) workflow builds the production assets and deploys them to:
-`https://Vaibhav1214.github.io/my-web-portfolio/`
+`https://vaibhav1214.github.io/`
