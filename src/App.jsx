@@ -106,7 +106,7 @@ function App() {
       <nav className="navbar" id="main-navigation">
         <div className="container nav-container">
           <div className="logo" id="portfolio-logo">
-            Vaibhav<span>.</span>
+            Vaibhav Mishra<span>.</span>
           </div>
 
           <button
