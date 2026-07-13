@@ -278,7 +278,7 @@ function App() {
                 <span className="timeline-date">Completed</span>
               </div>
               <div className="timeline-desc">
-                <p>Stream: Physics, Chemistry, Mathematics + Computer Science (PCM+CS) | Score: <strong>72.2%</strong></p>
+                <p>Stream: Physics, Chemistry, Mathematics + Computer Science (PCM+CS)</p>
               </div>
             </div>
 
@@ -289,9 +289,6 @@ function App() {
                   <span className="timeline-subtitle">Himalayan Progressive School (CBSE)</span>
                 </div>
                 <span className="timeline-date">Completed</span>
-              </div>
-              <div className="timeline-desc">
-                <p>Focus: Information Technology (IT) | Score: <strong>76.6%</strong></p>
               </div>
             </div>
           </div>
