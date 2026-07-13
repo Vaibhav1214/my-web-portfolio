@@ -3,6 +3,10 @@ import avatarImg from './assets/avatar.png'
 import projectMockupImg from './assets/project_mockup.png'
 import './App.css'
 
+// 💡 Enter your Web3Forms Access Key here to make the contact form work.
+// Get your key for free from: https://web3forms.com
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"
+
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
@@ -53,21 +57,25 @@ function App() {
     e.preventDefault()
     if (formName && formEmail && formMessage) {
       try {
-        const response = await fetch("https://formsubmit.co/ajax/mishravaibhav1214@gmail.com", {
+        const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
           body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
             name: formName,
             email: formEmail,
             message: formMessage,
-            _subject: `New Portfolio Message from ${formName}`
+            subject: `New Portfolio Message from ${formName}`,
+            from_name: "Vaibhav Portfolio"
           })
         })
 
-        if (response.ok) {
+        const data = await response.json()
+
+        if (response.ok && data.success) {
           setFormSubmitted(true)
           // Reset fields
           setFormName('')
@@ -79,7 +87,7 @@ function App() {
             setFormSubmitted(false)
           }, 5000)
         } else {
-          alert("Oops! Something went wrong while sending the message. Please try again.")
+          alert(data.message || "Oops! Something went wrong while sending the message. Please try again.")
         }
       } catch (error) {
         console.error("Error submitting contact form:", error)
