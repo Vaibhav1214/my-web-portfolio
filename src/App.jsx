@@ -3,9 +3,8 @@ import avatarImg from './assets/avatar.png'
 import projectMockupImg from './assets/project_mockup.png'
 import './App.css'
 
-// 💡 Enter your Web3Forms Access Key here to make the contact form work.
-// Get your key for free from: https://web3forms.com
-const WEB3FORMS_ACCESS_KEY = "11611f1a-c866-4d42-a6ac-1061907d374e"
+// 💡 Reads your Web3Forms Access Key from environment variables.
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || ""
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
