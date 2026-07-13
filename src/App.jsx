@@ -602,6 +602,7 @@ function App() {
                 type="text"
                 className="form-control"
                 id="contact-name"
+                name="name"
                 required
                 placeholder="Your Name"
                 value={formName}
@@ -615,6 +616,7 @@ function App() {
                 type="email"
                 className="form-control"
                 id="contact-email"
+                name="email"
                 required
                 placeholder="your.email@example.com"
                 value={formEmail}
@@ -627,6 +629,7 @@ function App() {
               <textarea
                 className="form-control"
                 id="contact-message"
+                name="message"
                 required
                 placeholder="Write your message here..."
                 value={formMessage}
