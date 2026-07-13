@@ -189,31 +189,43 @@ function App() {
           <div className="shape shape-1"></div>
           <div className="shape shape-2"></div>
         </div>
-        <div className="hero-content animate-slide-up">
-          <div className="hero-subtitle" id="hero-sub">Computer Science Student</div>
-          <h1 className="hero-title" id="hero-main-title">
-            Hi, I'm <span className="text-gradient">Vaibhav Mishra</span>
-          </h1>
-          <p className="hero-desc" id="hero-description-paragraph">
-            An enthusiastic B.Tech CSE student with strong foundations in programming,
-            data structures, and web development. Focused on creating functional software solutions
-            and looking to bring ideas to life.
-          </p>
-          <div className="cta-group">
-            <button
-              className="btn btn-primary"
-              id="cta-btn-projects"
-              onClick={() => handleLinkClick('projects')}
-            >
-              View My Work
-            </button>
-            <button
-              className="btn btn-secondary"
-              id="cta-btn-contact"
-              onClick={() => handleLinkClick('contact')}
-            >
-              Get In Touch
-            </button>
+        <div className="hero-grid">
+          <div className="hero-content animate-slide-up">
+            <div className="hero-subtitle" id="hero-sub">Computer Science Student</div>
+            <h1 className="hero-title" id="hero-main-title">
+              Hi, I'm <span className="text-gradient">Vaibhav Mishra</span>
+            </h1>
+            <p className="hero-desc" id="hero-description-paragraph">
+              An enthusiastic B.Tech CSE student with strong foundations in programming,
+              data structures, and web development. Focused on creating functional software solutions
+              and looking to bring ideas to life.
+            </p>
+            <div className="cta-group">
+              <button
+                className="btn btn-primary"
+                id="cta-btn-projects"
+                onClick={() => handleLinkClick('projects')}
+              >
+                View My Work
+              </button>
+              <button
+                className="btn btn-secondary"
+                id="cta-btn-contact"
+                onClick={() => handleLinkClick('contact')}
+              >
+                Get In Touch
+              </button>
+            </div>
+          </div>
+          
+          <div className="hero-img-container animate-fade-in">
+            <div className="hero-img-wrapper">
+              <img
+                src={avatarImg}
+                alt="Vaibhav Mishra Profile"
+                className="hero-img"
+              />
+            </div>
           </div>
         </div>
       </section>
