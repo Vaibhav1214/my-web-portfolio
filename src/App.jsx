@@ -53,7 +53,7 @@ function App() {
     e.preventDefault()
     if (formName && formEmail && formMessage) {
       try {
-        const response = await fetch("https://formsubmit.co/ajax/8f5396fa2bddedef31340dd866df652e", {
+        const response = await fetch("https://formsubmit.co/ajax/mishravaibhav1214@gmail.com", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -183,8 +183,8 @@ function App() {
             Hi, I'm <span className="text-gradient">Vaibhav Mishra</span>
           </h1>
           <p className="hero-desc" id="hero-description-paragraph">
-            An enthusiastic B.Tech CSE student with strong foundations in programming, 
-            data structures, and web development. Focused on creating functional software solutions 
+            An enthusiastic B.Tech CSE student with strong foundations in programming,
+            data structures, and web development. Focused on creating functional software solutions
             and looking to bring ideas to life.
           </p>
           <div className="cta-group">
@@ -222,13 +222,13 @@ function App() {
           <div className="about-text">
             <h2 className="section-title text-gradient" id="about-section-heading">About Myself</h2>
             <p className="about-paragraph" id="about-desc-p1">
-              I am a B.Tech Computer Science & Engineering student at Dr. APJ Abdul Kalam Institute of Technology. 
-              Currently in my 3rd year (6th Semester), I am working to combine solid software engineering principles, 
+              I am a B.Tech Computer Science & Engineering student at Dr. APJ Abdul Kalam Institute of Technology.
+              Currently in my 3rd year (6th Semester), I am working to combine solid software engineering principles,
               such as data structures and core computer science concepts, with interactive frontend web development.
             </p>
             <p className="about-paragraph" id="about-desc-p2">
-              My hands-on experience includes developing multiple IoT sensor systems (such as Arduino-based street lights 
-              and forest fire detection projects) and completing web development internships where I delivered functional 
+              My hands-on experience includes developing multiple IoT sensor systems (such as Arduino-based street lights
+              and forest fire detection projects) and completing web development internships where I delivered functional
               React and JavaScript tools.
             </p>
 
@@ -360,7 +360,7 @@ function App() {
               <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Arduino Based</span>
               <h3 className="project-title" id="project-title-fire-detection">AI-Enabled Forest Fire Detection</h3>
               <p className="project-desc">
-                Developed a sensor-based prototype system that detects early indicators of forest fires and environmental threats. 
+                Developed a sensor-based prototype system that detects early indicators of forest fires and environmental threats.
                 Integrates MQ-2 Gas sensor (smoke/gas), DHT11 (temp/humidity), soil moisture sensors, and SW-420 seismic vibration triggers.
               </p>
               <div className="project-tags">
@@ -386,7 +386,7 @@ function App() {
               <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>SIH 2024 / Arduino</span>
               <h3 className="project-title" id="project-title-streetlights">Smart Streetlights & Home Automation</h3>
               <p className="project-desc">
-                Designed a smart city energy-saving automation system. Uses IR sensors to detect approaching vehicles and dynamically 
+                Designed a smart city energy-saving automation system. Uses IR sensors to detect approaching vehicles and dynamically
                 adjust light intensity from 50% to 100%. Incorporates LDR sensors for light-controlled switching and renewable energy inputs.
               </p>
               <div className="project-tags">
@@ -412,7 +412,7 @@ function App() {
               <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Python Tool</span>
               <h3 className="project-title" id="project-title-sdlc">SDLC Interactive Learning Tool</h3>
               <p className="project-desc">
-                Created an interactive educational software application to teach the Software Development Life Cycle phases. 
+                Created an interactive educational software application to teach the Software Development Life Cycle phases.
                 Users can click through stages (Requirements, Design, Coding, Testing, Deployment) to render theory details and flow workflows.
               </p>
               <div className="project-tags">
@@ -552,7 +552,7 @@ function App() {
           <div className="contact-info" id="portfolio-contact-info-panel">
             <h3 className="contact-title" id="contact-panel-heading">Have a project or opportunity?</h3>
             <p className="contact-desc" id="contact-panel-description">
-              I am currently open to internship opportunities, student collaborations, and web development projects. 
+              I am currently open to internship opportunities, student collaborations, and web development projects.
               Fill out the form or reach out directly via email.
             </p>
 
