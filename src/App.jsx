@@ -16,7 +16,7 @@ function App() {
   // Track scroll position to update active navigation links
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'skills', 'contact']
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact']
       const scrollPosition = window.scrollY + 200
 
       for (const section of sections) {
@@ -124,7 +124,17 @@ function App() {
                 className={activeSection === 'about' ? 'active' : ''}
                 onClick={(e) => { e.preventDefault(); handleLinkClick('about'); }}
               >
-                About
+                About & Education
+              </a>
+            </li>
+            <li>
+              <a
+                href="#experience"
+                id="nav-link-experience"
+                className={activeSection === 'experience' ? 'active' : ''}
+                onClick={(e) => { e.preventDefault(); handleLinkClick('experience'); }}
+              >
+                Experience
               </a>
             </li>
             <li>
@@ -168,14 +178,14 @@ function App() {
           <div className="shape shape-2"></div>
         </div>
         <div className="hero-content animate-slide-up">
-          <div className="hero-subtitle" id="hero-sub">Creative Developer</div>
+          <div className="hero-subtitle" id="hero-sub">Computer Science Student</div>
           <h1 className="hero-title" id="hero-main-title">
-            Crafting Premium <br />
-            <span className="text-gradient">React Experiences</span>
+            Hi, I'm <span className="text-gradient">Vaibhav Mishra</span>
           </h1>
           <p className="hero-desc" id="hero-description-paragraph">
-            Hi, I'm Vaibhav. I design and build high-performance web applications
-            with pixel-perfect layouts, modern interactions, and robust user interfaces.
+            An enthusiastic B.Tech CSE student with strong foundations in programming, 
+            data structures, and web development. Focused on creating functional software solutions 
+            and looking to bring ideas to life.
           </p>
           <div className="cta-group">
             <button
@@ -196,14 +206,14 @@ function App() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About & Education Section */}
       <section className="section-padding container" id="about">
         <div className="about-grid">
           <div className="about-img-container">
             <div className="about-img-wrapper" id="about-image-wrapper-element">
               <img
                 src={avatarImg}
-                alt="Vaibhav Profile Avatar"
+                alt="Vaibhav Mishra Profile Avatar"
                 className="about-img"
                 id="about-profile-image"
               />
@@ -212,28 +222,125 @@ function App() {
           <div className="about-text">
             <h2 className="section-title text-gradient" id="about-section-heading">About Myself</h2>
             <p className="about-paragraph" id="about-desc-p1">
-              I am a web application developer with a passion for designing slick,
-              responsive, and user-centric interfaces. My journey is focused on combining
-              clean technical architecture with polished design.
+              I am a B.Tech Computer Science & Engineering student at Dr. APJ Abdul Kalam Institute of Technology. 
+              Currently in my 3rd year (6th Semester), I am working to combine solid software engineering principles, 
+              such as data structures and core computer science concepts, with interactive frontend web development.
             </p>
             <p className="about-paragraph" id="about-desc-p2">
-              Using React, modern state management, and optimized workflows, I convert complex
-              concepts into functional code that renders beautifully across all devices.
+              My hands-on experience includes developing multiple IoT sensor systems (such as Arduino-based street lights 
+              and forest fire detection projects) and completing web development internships where I delivered functional 
+              React and JavaScript tools.
             </p>
 
             <div className="about-stats" id="about-stats-grid">
               <div className="stat-card" id="stat-card-experience">
-                <div className="stat-number">3+</div>
-                <div className="stat-label">Years Learning</div>
+                <div className="stat-number">3rd Year</div>
+                <div className="stat-label">B.Tech CSE Student</div>
               </div>
               <div className="stat-card" id="stat-card-projects">
-                <div className="stat-number">20+</div>
-                <div className="stat-label">Projects Built</div>
+                <div className="stat-number">2</div>
+                <div className="stat-label">Web Internships Done</div>
               </div>
               <div className="stat-card" id="stat-card-commits">
-                <div className="stat-number">500+</div>
-                <div className="stat-label">Git Commits</div>
+                <div className="stat-number">3+</div>
+                <div className="stat-label">Key Systems Built</div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Education Timeline */}
+        <div style={{ marginTop: '60px' }}>
+          <h3 className="skills-category-title" style={{ fontSize: '24px', textAlign: 'left' }}>Education Background</h3>
+          <div className="timeline">
+            <div className="timeline-item">
+              <div className="timeline-header">
+                <div>
+                  <h4 className="timeline-title">B.Tech in Computer Science and Engineering</h4>
+                  <span className="timeline-subtitle">Dr. APJ Abdul Kalam Institute of Technology</span>
+                </div>
+                <span className="timeline-date">2023 – 2027</span>
+              </div>
+              <div className="timeline-desc">
+                <p>Currently in 3rd Year, 6th Semester.</p>
+                <p style={{ marginTop: '6px', color: 'var(--accent-orange-light)', fontSize: '13px' }}>
+                  <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Object-Oriented Programming (OOP), DBMS, Operating Systems, Computer Networks.
+                </p>
+              </div>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-header">
+                <div>
+                  <h4 className="timeline-title">Class XII (Senior Secondary School)</h4>
+                  <span className="timeline-subtitle">Himalayan Progressive School (CBSE)</span>
+                </div>
+                <span className="timeline-date">Completed</span>
+              </div>
+              <div className="timeline-desc">
+                <p>Stream: Physics, Chemistry, Mathematics + Computer Science (PCM+CS) | Score: <strong>72.2%</strong></p>
+              </div>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-header">
+                <div>
+                  <h4 className="timeline-title">Class X (Secondary School)</h4>
+                  <span className="timeline-subtitle">Himalayan Progressive School (CBSE)</span>
+                </div>
+                <span className="timeline-date">Completed</span>
+              </div>
+              <div className="timeline-desc">
+                <p>Focus: Information Technology (IT) | Score: <strong>76.6%</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="section-padding container" id="experience" style={{ backgroundColor: 'var(--bg-secondary)', borderRadius: '24px', margin: '40px auto', padding: '60px 40px' }}>
+        <h2 className="section-title text-gradient" id="experience-section-heading">Internship Experience</h2>
+        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px 0', textAlign: 'left' }}>
+          Industry projects and remote web development internships where I developed software development practices.
+        </p>
+
+        <div className="timeline">
+          <div className="timeline-item">
+            <div className="timeline-header">
+              <div>
+                <h4 className="timeline-title">Web Development Intern</h4>
+                <span className="timeline-subtitle" style={{ color: 'var(--accent-blue-light)' }}>SkillCraft</span>
+              </div>
+              <span className="timeline-date">July 2025</span>
+            </div>
+            <div className="timeline-desc">
+              <ul>
+                <li>Completed 4 hands-on web tasks, including building a Web App with functional UI and backend integration.</li>
+                <li>Developed an interactive Tic-Tac-Toe game using Smart AI and decision-making logic.</li>
+                <li>Built a fully featured Stopwatch Web App with responsive control states (start, stop, reset).</li>
+                <li>Designed and coded a responsive landing page optimized for multi-device viewport displays.</li>
+                <li>Strengthened technical knowledge of core web standards (HTML5, CSS3, JavaScript) and styling libraries.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="timeline-item">
+            <div className="timeline-header">
+              <div>
+                <h4 className="timeline-title">Web Development Intern</h4>
+                <span className="timeline-subtitle" style={{ color: 'var(--accent-blue-light)' }}>CodSoft</span>
+              </div>
+              <span className="timeline-date">Nov – Dec 2024</span>
+            </div>
+            <div className="timeline-desc">
+              <ul>
+                <li>Delivered 3 assigned responsive client-side web projects.</li>
+                <li>Designed and built a web-based Calculator Application with interactive UI layouts and accurate arithmetic operations.</li>
+                <li>Developed a Personal Portfolio Website to cleanly showcase projects, skills, and resume details.</li>
+                <li>Created a landing page incorporating responsive grids and clean, state-of-the-art UI elements.</li>
+                <li>Solidified workflows in debugging web components, version control via Git, and hosting live builds.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -241,86 +348,84 @@ function App() {
 
       {/* Projects Section */}
       <section className="section-padding container" id="projects">
-        <h2 className="section-title text-gradient" id="projects-section-heading">Featured Work</h2>
+        <h2 className="section-title text-gradient" id="projects-section-heading">Featured Projects</h2>
         <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px 0', textAlign: 'left' }}>
-          Here are some of the web applications I've engineered. Focus is placed on responsive design, smooth state transitions, and usability.
+          Hardware-software integrations and application prototypes built to solve real-world problems.
         </p>
 
         <div className="projects-grid" id="portfolio-projects-grid">
           {/* Project 1 */}
-          <div className="project-card" id="project-card-dashboard">
+          <div className="project-card" id="project-card-fire-detection">
             <div className="project-img-wrapper">
-              <img src={projectMockupImg} alt="Analytics Dashboard Mockup" className="project-img" />
+              <img src={projectMockupImg} alt="Forest Fire Detection System Mockup" className="project-img" />
             </div>
             <div className="project-info">
-              <h3 className="project-title" id="project-title-dashboard">Analytics UI Dashboard</h3>
+              <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Arduino Based</span>
+              <h3 className="project-title" id="project-title-fire-detection">AI-Enabled Forest Fire Detection</h3>
               <p className="project-desc">
-                A premium web interface demonstrating interactive data visualization, clean sales charts, and customizable layout themes.
+                Developed a sensor-based prototype system that detects early indicators of forest fires and environmental threats. 
+                Integrates MQ-2 Gas sensor (smoke/gas), DHT11 (temp/humidity), soil moisture sensors, and SW-420 seismic vibration triggers.
               </p>
               <div className="project-tags">
-                <span className="tag">React</span>
-                <span className="tag">Vite</span>
-                <span className="tag">Vanilla CSS</span>
-                <span className="tag">Data Viz</span>
+                <span className="tag">C/C++</span>
+                <span className="tag">Arduino</span>
+                <span className="tag">IoT Sensors</span>
+                <span className="tag">Disaster Prevention</span>
               </div>
               <div className="project-links">
-                <a href="#projects" className="project-link" id="project-link-demo-dashboard">
-                  Live Preview ↗
-                </a>
-                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-dashboard" target="_blank" rel="noopener noreferrer">
-                  Source Code
+                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-fire" target="_blank" rel="noopener noreferrer">
+                  Source Code ↗
                 </a>
               </div>
             </div>
           </div>
 
           {/* Project 2 */}
-          <div className="project-card" id="project-card-planner">
+          <div className="project-card" id="project-card-streetlights">
             <div className="project-img-wrapper">
-              <img src={projectMockupImg} alt="Smart Project Management Mockup" className="project-img" style={{ filter: 'hue-rotate(180deg)' }} />
+              <img src={projectMockupImg} alt="Smart Street Lights Mockup" className="project-img" style={{ filter: 'hue-rotate(180deg)' }} />
             </div>
             <div className="project-info">
-              <h3 className="project-title" id="project-title-planner">Smart Task Planner</h3>
+              <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>SIH 2024 / Arduino</span>
+              <h3 className="project-title" id="project-title-streetlights">Smart Streetlights & Home Automation</h3>
               <p className="project-desc">
-                An interactive task planning application with dynamic drag-and-drop mechanics, board lists, and fluid modal dialog configurations.
+                Designed a smart city energy-saving automation system. Uses IR sensors to detect approaching vehicles and dynamically 
+                adjust light intensity from 50% to 100%. Incorporates LDR sensors for light-controlled switching and renewable energy inputs.
               </p>
               <div className="project-tags">
-                <span className="tag">React</span>
-                <span className="tag">State Manager</span>
-                <span className="tag">Drag & Drop</span>
+                <span className="tag">IoT</span>
+                <span className="tag">SIH 2024</span>
+                <span className="tag">Renewable Energy</span>
+                <span className="tag">Infrared Sensors</span>
               </div>
               <div className="project-links">
-                <a href="#projects" className="project-link" id="project-link-demo-planner">
-                  Live Preview ↗
-                </a>
-                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-planner" target="_blank" rel="noopener noreferrer">
-                  Source Code
+                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-streetlights" target="_blank" rel="noopener noreferrer">
+                  Source Code ↗
                 </a>
               </div>
             </div>
           </div>
 
           {/* Project 3 */}
-          <div className="project-card" id="project-card-system">
+          <div className="project-card" id="project-card-sdlc-tool">
             <div className="project-img-wrapper">
-              <img src={projectMockupImg} alt="Interactive UI Library Mockup" className="project-img" style={{ filter: 'hue-rotate(45deg)' }} />
+              <img src={projectMockupImg} alt="SDLC Learning Tool Mockup" className="project-img" style={{ filter: 'hue-rotate(45deg)' }} />
             </div>
             <div className="project-info">
-              <h3 className="project-title" id="project-title-system">Design System Explorer</h3>
+              <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Python Tool</span>
+              <h3 className="project-title" id="project-title-sdlc">SDLC Interactive Learning Tool</h3>
               <p className="project-desc">
-                A sandbox for building reusable web components with custom HSL-based variables, sleek accessibility features, and micro-animations.
+                Created an interactive educational software application to teach the Software Development Life Cycle phases. 
+                Users can click through stages (Requirements, Design, Coding, Testing, Deployment) to render theory details and flow workflows.
               </p>
               <div className="project-tags">
-                <span className="tag">React</span>
-                <span className="tag">Storybook</span>
-                <span className="tag">CSS Variables</span>
+                <span className="tag">Python</span>
+                <span className="tag">GUI Systems</span>
+                <span className="tag">Software Engineering</span>
               </div>
               <div className="project-links">
-                <a href="#projects" className="project-link" id="project-link-demo-system">
-                  Live Preview ↗
-                </a>
-                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-system" target="_blank" rel="noopener noreferrer">
-                  Source Code
+                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-sdlc" target="_blank" rel="noopener noreferrer">
+                  Source Code ↗
                 </a>
               </div>
             </div>
@@ -330,67 +435,114 @@ function App() {
 
       {/* Skills Section */}
       <section className="section-padding container" id="skills">
-        <h2 className="section-title text-gradient" id="skills-section-heading">Skills & Tools</h2>
+        <h2 className="section-title text-gradient" id="skills-section-heading">Skills & Tech Stack</h2>
         <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px 0', textAlign: 'left' }}>
-          Technologies and developer practices I utilize to design, build, and deploy premium web applications.
+          Technologies and core academic concepts I study and apply in software engineering projects.
         </p>
 
         <div className="skills-container" id="portfolio-skills-container">
-          <div className="skills-category" id="skills-category-frontend">
-            <h3 className="skills-category-title">Core Development</h3>
+          <div className="skills-category" id="skills-category-programming">
+            <h3 className="skills-category-title">Programming Languages</h3>
             <div className="skills-grid">
-              <div className="skill-badge" id="skill-badge-react">
-                <span className="skill-icon-blue">⚛</span> React
+              <div className="skill-badge" id="skill-badge-c">
+                <span className="skill-icon-orange">✦</span> C
               </div>
-              <div className="skill-badge" id="skill-badge-js">
-                <span className="skill-icon-orange">⚡</span> JavaScript (ES6+)
+              <div className="skill-badge" id="skill-badge-cpp">
+                <span className="skill-icon-blue">⚛</span> C++
               </div>
+              <div className="skill-badge" id="skill-badge-python">
+                <span className="skill-icon-orange">⚡</span> Python
+              </div>
+              <div className="skill-badge" id="skill-badge-java">
+                <span className="skill-icon-blue">💻</span> Java
+              </div>
+            </div>
+          </div>
+
+          <div className="skills-category" id="skills-category-web">
+            <h3 className="skills-category-title">Web Development</h3>
+            <div className="skills-grid">
               <div className="skill-badge" id="skill-badge-html">
-                <span className="skill-icon-orange">✦</span> HTML5 / Canvas
+                <span className="skill-icon-orange">✦</span> HTML5
               </div>
               <div className="skill-badge" id="skill-badge-css">
-                <span className="skill-icon-blue">🎨</span> CSS3 / Vanilla CSS
+                <span className="skill-icon-blue">🎨</span> CSS3
               </div>
-              <div className="skill-badge" id="skill-badge-vite">
-                <span className="skill-icon-orange">⚡</span> Vite Bundler
+              <div className="skill-badge" id="skill-badge-js">
+                <span className="skill-icon-orange">⚡</span> JavaScript
               </div>
-            </div>
-          </div>
-
-          <div className="skills-category" id="skills-category-tools">
-            <h3 className="skills-category-title">Tools & Infrastructure</h3>
-            <div className="skills-grid">
-              <div className="skill-badge" id="skill-badge-git">
-                <span className="skill-icon-orange">⚙</span> Git & GitHub
-              </div>
-              <div className="skill-badge" id="skill-badge-npm">
-                <span className="skill-icon-orange">📦</span> npm Package Manager
-              </div>
-              <div className="skill-badge" id="skill-badge-vscode">
-                <span className="skill-icon-blue">💻</span> VS Code Editor
-              </div>
-              <div className="skill-badge" id="skill-badge-devtools">
-                <span className="skill-icon-blue">🔍</span> Chrome DevTools
+              <div className="skill-badge" id="skill-badge-sql">
+                <span className="skill-icon-blue">📦</span> SQL Databases
               </div>
             </div>
           </div>
 
-          <div className="skills-category" id="skills-category-design">
-            <h3 className="skills-category-title">Design Philosophy</h3>
+          <div className="skills-category" id="skills-category-concepts">
+            <h3 className="skills-category-title">Core Computer Science Concepts</h3>
             <div className="skills-grid">
-              <div className="skill-badge" id="skill-badge-ui">
-                <span className="skill-icon-orange">✧</span> UI/UX Prototyping
+              <div className="skill-badge" id="skill-badge-dsa">
+                <span className="skill-icon-orange">⚙</span> Data Structures & Algorithms
               </div>
-              <div className="skill-badge" id="skill-badge-responsive">
-                <span className="skill-icon-blue">📱</span> Responsive Grid Layouts
+              <div className="skill-badge" id="skill-badge-oop">
+                <span className="skill-icon-blue">✓</span> Object-Oriented Programming (OOP)
               </div>
-              <div className="skill-badge" id="skill-badge-animations">
-                <span className="skill-icon-orange">☄</span> Micro-interactions & Animations
+              <div className="skill-badge" id="skill-badge-daa">
+                <span className="skill-icon-orange">⚡</span> DAA (Design & Analysis of Algorithms)
               </div>
-              <div className="skill-badge" id="skill-badge-accessibility">
-                <span className="skill-icon-blue">✓</span> Web Accessibility (a11y)
+              <div className="skill-badge" id="skill-badge-dbms">
+                <span className="skill-icon-blue">🔍</span> DBMS
+              </div>
+              <div className="skill-badge" id="skill-badge-os">
+                <span className="skill-icon-orange">✦</span> Operating Systems (OS)
+              </div>
+              <div className="skill-badge" id="skill-badge-cn">
+                <span className="skill-icon-blue">🌐</span> Computer Networks (CN)
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Achievements Section */}
+      <section className="section-padding container" id="certifications" style={{ borderTop: '1px solid var(--border-color)' }}>
+        <h2 className="section-title text-gradient" id="certs-heading">Qualifications & Achievements</h2>
+        <div className="cards-grid-2col">
+          {/* Certifications */}
+          <div className="info-card" id="certifications-card">
+            <h3 className="info-card-title">Professional Certifications</h3>
+            <ul className="info-list">
+              <li className="info-list-item">
+                <strong>Google Student Ambassador Program</strong> — Participation Certificate (2025)
+              </li>
+              <li className="info-list-item">
+                <strong>Financial Education for Young Citizens</strong> — NISM & Aditya Birla Capital Foundation (2025)
+              </li>
+              <li className="info-list-item">
+                <strong>Digital Literacy Certification</strong> — PMGDISHA, Government of India (2021)
+              </li>
+            </ul>
+          </div>
+
+          {/* Achievements & Activities */}
+          <div className="info-card" id="achievements-card">
+            <h3 className="info-card-title">Achievements & Activities</h3>
+            <ul className="info-list">
+              <li className="info-list-item">
+                <strong>1st Place</strong> — Internal Smart India Hackathon (SIH), Sept 2024
+              </li>
+              <li className="info-list-item">
+                Active participation in sports events at school and college level
+              </li>
+              <li className="info-list-item">
+                Engaged in quizzes and academic contests with strong placements
+              </li>
+              <li className="info-list-item">
+                Involved in debates and public speaking, developing communication skills
+              </li>
+              <li className="info-list-item">
+                Performed in skits and cultural activities, contributing to creative team projects
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -401,16 +553,17 @@ function App() {
 
         <div className="contact-grid">
           <div className="contact-info" id="portfolio-contact-info-panel">
-            <h3 className="contact-title" id="contact-panel-heading">Have a project in mind?</h3>
+            <h3 className="contact-title" id="contact-panel-heading">Have a project or opportunity?</h3>
             <p className="contact-desc" id="contact-panel-description">
-              I am currently open to project ideas, collaborations, and web development opportunities. Use the contact form or email me directly.
+              I am currently open to internship opportunities, student collaborations, and web development projects. 
+              Fill out the form or reach out directly via email.
             </p>
 
             <div className="contact-details" id="contact-details-list">
               <div className="contact-item" id="contact-item-email">
                 <div className="contact-icon-wrapper">✉</div>
                 <div>
-                  <div className="contact-label">Mail Me</div>
+                  <div className="contact-label">Email Me</div>
                   <div className="contact-value">
                     <a href="mailto:mishravaibhav1214@gmail.com" id="contact-email-link">mishravaibhav1214@gmail.com</a>
                   </div>
@@ -421,7 +574,19 @@ function App() {
                 <div className="contact-icon-wrapper">📍</div>
                 <div>
                   <div className="contact-label">Location</div>
-                  <div className="contact-value">India</div>
+                  <div className="contact-value">Lalkuan, Nainital, India</div>
+                </div>
+              </div>
+
+              <div className="contact-item" id="contact-item-linkedin">
+                <div className="contact-icon-wrapper">💼</div>
+                <div>
+                  <div className="contact-label">LinkedIn</div>
+                  <div className="contact-value">
+                    <a href="https://linkedin.com/in/vaibhav-mishra-04578a290" target="_blank" rel="noopener noreferrer">
+                      vaibhav-mishra-04578a290
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -487,17 +652,14 @@ function App() {
       <footer className="footer" id="portfolio-footer">
         <div className="container footer-content">
           <div className="footer-copy" id="footer-copyright-text">
-            © {new Date().getFullYear()} Vaibhav. All rights reserved.
+            © {new Date().getFullYear()} Vaibhav Mishra. All rights reserved.
           </div>
           <div className="social-links" id="footer-social-links">
             <a href="https://github.com/Vaibhav1214/my-web-portfolio" target="_blank" rel="noopener noreferrer" className="social-btn" id="social-link-github" aria-label="GitHub Profile">
               🐙
             </a>
-            <a href="#home" className="social-btn" id="social-link-linkedin" aria-label="LinkedIn Profile">
+            <a href="https://linkedin.com/in/vaibhav-mishra-04578a290" target="_blank" rel="noopener noreferrer" className="social-btn" id="social-link-linkedin-footer" aria-label="LinkedIn Profile">
               💼
-            </a>
-            <a href="#home" className="social-btn" id="social-link-twitter" aria-label="Twitter Profile">
-              🐦
             </a>
           </div>
         </div>
