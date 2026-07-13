@@ -217,22 +217,7 @@ function App() {
               </button>
             </div>
           </div>
-          
-          <div className="hero-img-container animate-fade-in">
-            <div className="hero-img-wrapper">
-              <img
-                src={avatarImg}
-                alt="Vaibhav Mishra Profile"
-                className="hero-img"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* About & Education Section */}
-      <section className="section-padding container" id="about">
-        <div className="about-grid">
           <div className="about-img-container">
             <div className="about-img-wrapper" id="about-image-wrapper-element">
               <img
@@ -243,6 +228,12 @@ function App() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* About & Education Section */}
+      <section className="section-padding container" id="about">
+        <div className="about-grid">
           <div className="about-text">
             <h2 className="section-title text-gradient" id="about-section-heading">About Myself</h2>
             <p className="about-paragraph" id="about-desc-p1">
