@@ -16,6 +16,7 @@ function App() {
   const [formEmail, setFormEmail] = useState('')
   const [formMessage, setFormMessage] = useState('')
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Track scroll position to update active navigation links
   useEffect(() => {
@@ -55,7 +56,9 @@ function App() {
 
   const handleContactSubmit = async (e) => {
     e.preventDefault()
+    if (isSubmitting) return
     if (formName && formEmail && formMessage) {
+      setIsSubmitting(true)
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -92,6 +95,8 @@ function App() {
       } catch (error) {
         console.error("Error submitting contact form:", error)
         alert("Oops! There was a network connection error. Please try again later.")
+      } finally {
+        setIsSubmitting(false)
       }
     }
   }
@@ -649,8 +654,9 @@ function App() {
               type="submit"
               className="btn btn-primary"
               id="contact-submit-button"
+              disabled={isSubmitting}
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>
