@@ -195,10 +195,41 @@ code, kbd, samp, pre {
 }
 
 @media (max-width: 768px) {
+  body {
+    background-image: 
+      radial-gradient(circle at 80% 10%, rgba(99, 102, 241, 0.18) 0%, transparent 50%),
+      radial-gradient(circle at 10% 60%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+      linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+  }
+  .container {
+    padding: 0 16px;
+  }
   .section-padding {
-    padding: 50px 0;
+    padding: 42px 0;
+  }
+  .section-header {
+    margin-bottom: 28px;
   }
   .section-title {
-    font-size: 26px;
+    font-size: clamp(22px, 6vw, 28px);
+  }
+  .section-desc {
+    font-size: 14px;
   }
 }
+
+/* Touch active scale helper */
+.touch-active:active,
+button:active,
+.btn:active,
+.card:active {
+  transform: scale(0.985);
+  transition: transform 0.1s ease;
+}
+
+body.menu-open {
+  overflow: hidden !important;
+}
+

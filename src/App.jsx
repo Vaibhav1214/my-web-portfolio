@@ -36,6 +36,12 @@ const Icons = {
   ),
   Location: () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+  ),
+  Menu: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  ),
+  Close: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
   )
 }
 
@@ -81,6 +87,14 @@ function App() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
+  }, [mobileMenuOpen])
 
   const handleLinkClick = (sectionId) => {
     setMobileMenuOpen(false)
@@ -157,13 +171,18 @@ function App() {
           </div>
 
           <button
-            className="menu-toggle"
+            className={`menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
             id="mobile-nav-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Menu"
           >
-            ☰
+            {mobileMenuOpen ? <Icons.Close /> : <Icons.Menu />}
           </button>
+
+          <div
+            className={`mobile-backdrop ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
 
           <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`} id="navigation-links-list">
             {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((sec) => (
@@ -239,16 +258,22 @@ function App() {
                 <div className="dot dot-red"></div>
                 <div className="dot dot-yellow"></div>
                 <div className="dot dot-green"></div>
+                <span className="terminal-filename">developer_profile.json</span>
               </div>
               <div className="terminal-line">
                 <span className="terminal-prompt">$</span>
                 <span className="terminal-command">cat developer_profile.json</span>
               </div>
-              <div className="terminal-line" style={{ marginTop: '4px' }}>
-                <span className="terminal-output">
-                  {`{ "name": "Vaibhav Mishra", "degree": "B.Tech CSE", "year": "3rd Year (Sem 6)", "skills": ["C++", "React", "Python", "IoT"] }`}
-                </span>
-              </div>
+              <pre className="terminal-code-block">
+                <code className="terminal-output">
+{`{
+  "name": "Vaibhav Mishra",
+  "degree": "B.Tech CSE (3rd Year)",
+  "location": "Uttarakhand, India",
+  "skills": ["C++", "React", "Python", "IoT"]
+}`}
+                </code>
+              </pre>
             </div>
           </div>
 
