@@ -511,22 +511,24 @@ function App() {
 
               <div className="streetlight-demo">
                 <div className="road-visualization">
+                  <div className="road-lane-line"></div>
+                  
                   <div className="street-lamp">
                     <div
                       className="lamp-glow"
                       style={{
-                        boxShadow: vehiclePassing ? '0 0 24px #f59e0b, 0 0 40px #f59e0b' : '0 0 8px rgba(245, 158, 11, 0.4)',
-                        opacity: vehiclePassing ? 1 : 0.45
+                        boxShadow: vehiclePassing ? '0 0 28px #f59e0b, 0 0 45px #f59e0b' : '0 0 8px rgba(245, 158, 11, 0.35)',
+                        opacity: vehiclePassing ? 1 : 0.4
                       }}
                     ></div>
-                    <span style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>
-                      {vehiclePassing ? '100% Brightness' : '50% Idle'}
+                    <span className="lamp-status-text">
+                      {vehiclePassing ? '100% (Vehicle Under Sensor)' : '50% (Idle Energy Save)'}
                     </span>
                   </div>
 
                   <div
                     className="vehicle-sim"
-                    style={{ transform: vehiclePassing ? 'translateX(30px)' : 'translateX(-30px)' }}
+                    style={{ left: vehiclePassing ? '50%' : '15%' }}
                   >
                     🚗
                   </div>
@@ -534,10 +536,10 @@ function App() {
 
                 <button
                   className="btn btn-outline"
-                  style={{ fontSize: '11px', padding: '4px 10px', width: '100%' }}
+                  style={{ fontSize: '11px', padding: '6px 10px', width: '100%' }}
                   onClick={() => setVehiclePassing(!vehiclePassing)}
                 >
-                  🚙 Click to Simulate Vehicle Passing IR Sensor
+                  🚙 {vehiclePassing ? '↩ Reset Vehicle (Return to Idle 50%)' : '⚡ Drive Vehicle Under IR Sensor (Boost to 100%)'}
                 </button>
               </div>
             </div>
