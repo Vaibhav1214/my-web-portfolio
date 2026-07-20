@@ -1,14 +1,57 @@
 import { useState, useEffect } from 'react'
 import avatarImg from './assets/avatar.png'
-import projectMockupImg from './assets/project_mockup.png'
 import './App.css'
 
-// 💡 Reads your Web3Forms Access Key from environment variables.
+// Web3Forms Key
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || ""
+
+// Inline clean SVG Icons for authentic dev aesthetic
+const Icons = {
+  Github: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+  ),
+  Linkedin: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+  ),
+  Mail: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+  ),
+  ExternalLink: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+  ),
+  Copy: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+  ),
+  Check: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  ),
+  Code: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+  ),
+  Cpu: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+  ),
+  Terminal: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+  ),
+  Location: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+  )
+}
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [copiedEmail, setCopiedEmail] = useState(false)
+
+  // Interactive Project 1: IoT Sensor State Simulation
+  const [sensorAlertMode, setSensorAlertMode] = useState(false)
+
+  // Interactive Project 2: Streetlight Vehicle Simulation
+  const [vehiclePassing, setVehiclePassing] = useState(false)
+
+  // Interactive Project 3: SDLC Tool Step State
+  const [sdlcPhase, setSdlcPhase] = useState('Requirements')
 
   // Contact Form State
   const [formName, setFormName] = useState('')
@@ -17,7 +60,6 @@ function App() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Track scroll position to update active navigation links
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact']
@@ -40,10 +82,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen)
-  }
-
   const handleLinkClick = (sectionId) => {
     setMobileMenuOpen(false)
     setActiveSection(sectionId)
@@ -51,6 +89,12 @@ function App() {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const copyEmailToClipboard = () => {
+    navigator.clipboard.writeText('mishravaibhav1214@gmail.com')
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 3000)
   }
 
   const handleContactSubmit = async (e) => {
@@ -76,28 +120,30 @@ function App() {
         })
 
         const data = await response.json()
-
         if (response.ok && data.success) {
           setFormSubmitted(true)
-          // Reset fields
           setFormName('')
           setFormEmail('')
           setFormMessage('')
-
-          // Clear success message after 5 seconds
-          setTimeout(() => {
-            setFormSubmitted(false)
-          }, 5000)
+          setTimeout(() => setFormSubmitted(false), 5000)
         } else {
-          alert(data.message || "Oops! Something went wrong while sending the message. Please try again.")
+          alert(data.message || "Something went wrong while sending message.")
         }
       } catch (error) {
-        console.error("Error submitting contact form:", error)
-        alert("Oops! There was a network connection error. Please try again later.")
+        console.error("Contact form error:", error)
+        alert("Network error. Please try again.")
       } finally {
         setIsSubmitting(false)
       }
     }
+  }
+
+  const sdlcDetails = {
+    Requirements: "Gathering system requirements, define smoke detection thresholds & API schema specifications.",
+    Design: "System architecture diagrams, component wireframes, database tables & sensor circuit schematics.",
+    Development: "Coding modular C++ Arduino firmware routines and building responsive React interface components.",
+    Testing: "Executing hardware loop tests, gas threshold calibration, and automated UI state validations.",
+    Deployment: "Building production bundles, Git version control push, and live cloud deployment hosting."
   }
 
   return (
@@ -106,126 +152,134 @@ function App() {
       <nav className="navbar" id="main-navigation">
         <div className="container nav-container">
           <div className="logo" id="portfolio-logo">
-            Vaibhav Mishra
+            <span className="logo-badge">&lt;VM /&gt;</span>
+            <span>Vaibhav Mishra</span>
           </div>
 
           <button
             className="menu-toggle"
             id="mobile-nav-toggle"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle Navigation Menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
           >
             ☰
           </button>
 
           <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`} id="navigation-links-list">
-            <li>
-              <a
-                href="#home"
-                id="nav-link-home"
-                className={activeSection === 'home' ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); handleLinkClick('home'); }}
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#about"
-                id="nav-link-about"
-                className={activeSection === 'about' ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); handleLinkClick('about'); }}
-              >
-                About & Education
-              </a>
-            </li>
-            <li>
-              <a
-                href="#experience"
-                id="nav-link-experience"
-                className={activeSection === 'experience' ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); handleLinkClick('experience'); }}
-              >
-                Experience
-              </a>
-            </li>
-            <li>
-              <a
-                href="#projects"
-                id="nav-link-projects"
-                className={activeSection === 'projects' ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); handleLinkClick('projects'); }}
-              >
-                Projects
-              </a>
-            </li>
-            <li>
-              <a
-                href="#skills"
-                id="nav-link-skills"
-                className={activeSection === 'skills' ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); handleLinkClick('skills'); }}
-              >
-                Skills
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                id="nav-link-contact"
-                className={activeSection === 'contact' ? 'active' : ''}
-                onClick={(e) => { e.preventDefault(); handleLinkClick('contact'); }}
-              >
-                Contact
-              </a>
-            </li>
+            {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((sec) => (
+              <li key={sec}>
+                <a
+                  href={`#${sec}`}
+                  id={`nav-link-${sec}`}
+                  className={activeSection === sec ? 'active' : ''}
+                  onClick={(e) => { e.preventDefault(); handleLinkClick(sec); }}
+                >
+                  {sec.charAt(0).toUpperCase() + sec.slice(1)}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="hero-section container" id="home">
-        <div className="hero-bg-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-        </div>
         <div className="hero-grid">
           <div className="hero-content animate-slide-up">
-            <div className="hero-subtitle" id="hero-sub">Computer Science Student</div>
+            <div className="status-pill">
+              <span className="status-dot"></span>
+              Open for Internships & Collaborations
+            </div>
+
             <h1 className="hero-title" id="hero-main-title">
-              Hi, I'm <span className="text-gradient">Vaibhav Mishra</span>
+              Engineering Software & <span className="text-gradient">Hardware Systems</span>
             </h1>
-            <p className="hero-desc" id="hero-description-paragraph">
-              An enthusiastic B.Tech CSE student with strong foundations in programming,
-              data structures, and web development. Focused on creating functional software solutions
-              and looking to bring ideas to life.
+            
+            <p className="hero-subtitle">
+              B.Tech Computer Science & Engineering Student (3rd Year) focused on modern web development, data structures, and IoT embedded systems.
             </p>
+
+            <p className="hero-desc">
+              Based in Uttarakhand, India. Building clean functional web apps with React & JavaScript, alongside Arduino-based sensor automation projects.
+            </p>
+
             <div className="cta-group">
-              <button
+              <a
+                href="https://linkedin.com/in/vaibhav-mishra-04578a290"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-primary"
-                id="cta-btn-projects"
-                onClick={() => handleLinkClick('projects')}
+                id="cta-btn-linkedin"
               >
-                View My Work
-              </button>
+                <Icons.Linkedin /> LinkedIn Profile
+              </a>
+              
               <button
                 className="btn btn-secondary"
                 id="cta-btn-contact"
                 onClick={() => handleLinkClick('contact')}
               >
-                Get In Touch
+                <Icons.Mail /> Contact Me
               </button>
+
+              <a
+                href="https://github.com/Vaibhav1214"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                aria-label="GitHub Profile"
+              >
+                <Icons.Github /> GitHub
+              </a>
+            </div>
+
+            {/* Terminal snippet card */}
+            <div className="terminal-box">
+              <div className="terminal-header">
+                <div className="dot dot-red"></div>
+                <div className="dot dot-yellow"></div>
+                <div className="dot dot-green"></div>
+              </div>
+              <div className="terminal-line">
+                <span className="terminal-prompt">$</span>
+                <span className="terminal-command">cat developer_profile.json</span>
+              </div>
+              <div className="terminal-line" style={{ marginTop: '4px' }}>
+                <span className="terminal-output">
+                  {`{ "name": "Vaibhav Mishra", "degree": "B.Tech CSE", "year": "3rd Year (Sem 6)", "skills": ["C++", "React", "Python", "IoT"] }`}
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="about-img-container">
-            <div className="about-img-wrapper" id="about-image-wrapper-element">
+          {/* Hero Right: Profile Card */}
+          <div className="hero-avatar-box animate-slide-up">
+            <div className="avatar-wrapper">
               <img
                 src={avatarImg}
-                alt="Vaibhav Mishra Profile Avatar"
-                className="about-img"
+                alt="Vaibhav Mishra Profile"
+                className="avatar-img"
                 id="about-profile-image"
               />
+            </div>
+            
+            <div className="avatar-badge-grid">
+              <div className="quick-stat-badge">
+                <div className="quick-stat-value">3rd Year</div>
+                <div className="quick-stat-label">B.Tech CSE Student</div>
+              </div>
+              <div className="quick-stat-badge">
+                <div className="quick-stat-value">2</div>
+                <div className="quick-stat-label">Web Internships</div>
+              </div>
+              <div className="quick-stat-badge">
+                <div className="quick-stat-value">IoT & Web</div>
+                <div className="quick-stat-label">Hardware & Software</div>
+              </div>
+              <div className="quick-stat-badge">
+                <div className="quick-stat-value">3+</div>
+                <div className="quick-stat-label">Key Projects</div>
+              </div>
             </div>
           </div>
         </div>
@@ -233,77 +287,54 @@ function App() {
 
       {/* About & Education Section */}
       <section className="section-padding container" id="about">
-        <div className="about-grid">
-          <div className="about-text">
-            <h2 className="section-title text-gradient" id="about-section-heading">About Myself</h2>
-            <p className="about-paragraph" id="about-desc-p1">
-              I am a B.Tech Computer Science & Engineering student at Dr. APJ Abdul Kalam Institute of Technology.
-              Currently in my 3rd year (6th Semester), I am working to combine solid software engineering principles,
-              such as data structures and core computer science concepts, with interactive frontend web development.
-            </p>
-            <p className="about-paragraph" id="about-desc-p2">
-              My hands-on experience includes developing multiple IoT sensor systems (such as Arduino-based street lights
-              and forest fire detection projects) and completing web development internships where I delivered functional
-              React and JavaScript tools.
-            </p>
-
-            <div className="about-stats" id="about-stats-grid">
-              <div className="stat-card" id="stat-card-experience">
-                <div className="stat-number">3rd Year</div>
-                <div className="stat-label">B.Tech CSE Student</div>
-              </div>
-              <div className="stat-card" id="stat-card-projects">
-                <div className="stat-number">2</div>
-                <div className="stat-label">Web Internships Done</div>
-              </div>
-              <div className="stat-card" id="stat-card-commits">
-                <div className="stat-number">3+</div>
-                <div className="stat-label">Key Systems Built</div>
-              </div>
-            </div>
-          </div>
+        <div className="section-header">
+          <div className="section-tag">Background</div>
+          <h2 className="section-title">About & Education</h2>
+          <p className="section-desc">
+            Academic timeline, coursework focus, and engineering fundamentals at Dr. APJ Abdul Kalam Institute of Technology.
+          </p>
         </div>
 
-        {/* Education Timeline */}
-        <div style={{ marginTop: '60px' }}>
-          <h3 className="skills-category-title" style={{ fontSize: '24px', textAlign: 'left' }}>Education Background</h3>
-          <div className="timeline">
-            <div className="timeline-item">
-              <div className="timeline-header">
-                <div>
-                  <h4 className="timeline-title">B.Tech in Computer Science and Engineering</h4>
-                  <span className="timeline-subtitle">Dr. APJ Abdul Kalam Institute of Technology</span>
+        <div className="cards-grid-2">
+          {/* Bio overview */}
+          <div className="card">
+            <h3 style={{ fontSize: '20px', marginBottom: '14px' }}>Developer Overview</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.7', marginBottom: '16px' }}>
+              I am a 3rd-year Computer Science student passionate about translating theory into functional applications. My work spans client-side web development with React and JavaScript to low-level microcontroller programming for IoT solutions.
+            </p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.7' }}>
+              Through remote internships at SkillCraft and CodSoft, I have developed disciplined software development practices including git version control, clean modular layout patterns, and API integration.
+            </p>
+          </div>
+
+          {/* Education Timeline */}
+          <div className="card">
+            <h3 style={{ fontSize: '20px', marginBottom: '20px' }}>Education</h3>
+            <div className="timeline">
+              <div className="timeline-item">
+                <div className="timeline-header">
+                  <div>
+                    <div className="timeline-title">B.Tech in Computer Science & Engineering</div>
+                    <div className="timeline-org">Dr. APJ Abdul Kalam Institute of Technology</div>
+                  </div>
+                  <span className="timeline-date">2023 – 2027</span>
                 </div>
-                <span className="timeline-date">2023 – 2027</span>
-              </div>
-              <div className="timeline-desc">
-                <p>Currently in 3rd Year, 6th Semester.</p>
-                <p style={{ marginTop: '6px', color: 'var(--accent-orange-light)', fontSize: '13px' }}>
-                  <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Object-Oriented Programming (OOP), DBMS, Operating Systems, Computer Networks.
+                <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>
+                  Currently in 3rd Year (6th Semester). Coursework: DSA, OOP in C++, DBMS, Operating Systems, Computer Networks.
                 </p>
               </div>
-            </div>
 
-            <div className="timeline-item">
-              <div className="timeline-header">
-                <div>
-                  <h4 className="timeline-title">Class XII (Senior Secondary School)</h4>
-                  <span className="timeline-subtitle">Himalayan Progressive School (CBSE)</span>
+              <div className="timeline-item">
+                <div className="timeline-header">
+                  <div>
+                    <div className="timeline-title">Class XII (Senior Secondary)</div>
+                    <div className="timeline-org">Himalayan Progressive School (CBSE)</div>
+                  </div>
+                  <span className="timeline-date">Completed</span>
                 </div>
-                <span className="timeline-date">Completed</span>
-              </div>
-              <div className="timeline-desc">
-                <p>Stream: Physics, Chemistry, Mathematics + Computer Science (PCM+CS)</p>
-              </div>
-            </div>
-
-            <div className="timeline-item">
-              <div className="timeline-header">
-                <div>
-                  <h4 className="timeline-title">Class X (Secondary School)</h4>
-                  <span className="timeline-subtitle">Himalayan Progressive School (CBSE)</span>
-                </div>
-                <span className="timeline-date">Completed</span>
+                <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>
+                  Science Stream: Physics, Chemistry, Mathematics & Computer Science (PCM+CS).
+                </p>
               </div>
             </div>
           </div>
@@ -311,249 +342,354 @@ function App() {
       </section>
 
       {/* Experience Section */}
-      <section className="section-padding container" id="experience" style={{ backgroundColor: 'var(--bg-secondary)', borderRadius: '24px', margin: '40px auto', padding: '60px 40px' }}>
-        <h2 className="section-title text-gradient" id="experience-section-heading">Internship Experience</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px 0', textAlign: 'left' }}>
-          Industry projects and remote web development internships where I developed software development practices.
-        </p>
+      <section className="section-padding container" id="experience">
+        <div className="section-header">
+          <div className="section-tag">Internships</div>
+          <h2 className="section-title">Work & Internship Experience</h2>
+          <p className="section-desc">
+            Hands-on web engineering roles where I built responsive web applications and improved development workflows.
+          </p>
+        </div>
 
         <div className="timeline">
           <div className="timeline-item">
-            <div className="timeline-header">
-              <div>
-                <h4 className="timeline-title">Web Development Intern</h4>
-                <span className="timeline-subtitle" style={{ color: 'var(--accent-blue-light)' }}>SkillCraft</span>
+            <div className="timeline-card">
+              <div className="timeline-header">
+                <div>
+                  <div className="timeline-title">Web Development Intern</div>
+                  <div className="timeline-org">SkillCraft</div>
+                </div>
+                <span className="timeline-date">July 2025</span>
               </div>
-              <span className="timeline-date">July 2025</span>
-            </div>
-            <div className="timeline-desc">
-              <ul>
-                <li>Completed 4 hands-on web tasks, including building a Web App with functional UI and backend integration.</li>
-                <li>Developed an interactive Tic-Tac-Toe game using Smart AI and decision-making logic.</li>
-                <li>Built a fully featured Stopwatch Web App with responsive control states (start, stop, reset).</li>
-                <li>Designed and coded a responsive landing page optimized for multi-device viewport displays.</li>
-                <li>Strengthened technical knowledge of core web standards (HTML5, CSS3, JavaScript) and styling libraries.</li>
+              <ul className="timeline-bullets">
+                <li>Completed 4 core web development projects, including interactive single-page web applications.</li>
+                <li>Built a Tic-Tac-Toe web game featuring custom AI decision logic and responsive UI state management.</li>
+                <li>Engineered a high-precision Stopwatch Web Application with lap recording and timing controls.</li>
+                <li>Designed responsive multi-device landing page layouts optimizing performance across viewports.</li>
               </ul>
             </div>
           </div>
 
           <div className="timeline-item">
-            <div className="timeline-header">
-              <div>
-                <h4 className="timeline-title">Web Development Intern</h4>
-                <span className="timeline-subtitle" style={{ color: 'var(--accent-blue-light)' }}>CodSoft</span>
+            <div className="timeline-card">
+              <div className="timeline-header">
+                <div>
+                  <div className="timeline-title">Web Development Intern</div>
+                  <div className="timeline-org">CodSoft</div>
+                </div>
+                <span className="timeline-date">Nov – Dec 2024</span>
               </div>
-              <span className="timeline-date">Nov – Dec 2024</span>
-            </div>
-            <div className="timeline-desc">
-              <ul>
-                <li>Delivered 3 assigned responsive client-side web projects.</li>
-                <li>Designed and built a web-based Calculator Application with interactive UI layouts and accurate arithmetic operations.</li>
-                <li>Developed a Personal Portfolio Website to cleanly showcase projects, skills, and resume details.</li>
-                <li>Created a landing page incorporating responsive grids and clean, state-of-the-art UI elements.</li>
-                <li>Solidified workflows in debugging web components, version control via Git, and hosting live builds.</li>
+              <ul className="timeline-bullets">
+                <li>Delivered 3 production-ready client web projects with clean semantic HTML5 & modern CSS.</li>
+                <li>Built a web-based Calculator application with accurate arithmetic operations and keyboard event listeners.</li>
+                <li>Created a personal developer portfolio website showcasing projects, skills, and contact flows.</li>
+                <li>Practiced version control workflows with Git & GitHub deployment tools.</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects Section with Interactive Visualizers */}
       <section className="section-padding container" id="projects">
-        <h2 className="section-title text-gradient" id="projects-section-heading">Featured Projects</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px 0', textAlign: 'left' }}>
-          Hardware-software integrations and application prototypes built to solve real-world problems.
-        </p>
+        <div className="section-header">
+          <div className="section-tag">Portfolio</div>
+          <h2 className="section-title">Featured Engineering Projects</h2>
+          <p className="section-desc">
+            Hardware-software IoT implementations and application tools built with real-world utility in mind.
+          </p>
+        </div>
 
-        <div className="projects-grid" id="portfolio-projects-grid">
-          {/* Project 1 */}
-          <div className="project-card" id="project-card-fire-detection">
-            <div className="project-img-wrapper">
-              <img src={projectMockupImg} alt="Forest Fire Detection System Mockup" className="project-img" />
+        <div className="cards-grid-3">
+          {/* Project 1: Forest Fire Detection */}
+          <div className="project-card">
+            <div className="project-widget">
+              <div className="widget-bar">
+                <span>SENSOR_DASHBOARD.cc</span>
+                <span className="widget-tag">IoT Hardware</span>
+              </div>
+
+              {/* Interactive Sensor Box */}
+              <div className="sensor-grid">
+                <div className="sensor-box">
+                  <div className="sensor-name">MQ-2 Gas / Smoke</div>
+                  <div className={`sensor-val ${sensorAlertMode ? 'alert' : 'normal'}`}>
+                    {sensorAlertMode ? '680 PPM (HIGH)' : '115 PPM (OK)'}
+                  </div>
+                </div>
+
+                <div className="sensor-box">
+                  <div className="sensor-name">DHT11 Temp</div>
+                  <div className={`sensor-val ${sensorAlertMode ? 'alert' : 'normal'}`}>
+                    {sensorAlertMode ? '49.2 °C' : '26.4 °C'}
+                  </div>
+                </div>
+
+                <div className="sensor-box">
+                  <div className="sensor-name">Soil Moisture</div>
+                  <div className="sensor-val normal">
+                    {sensorAlertMode ? '14% (Dry)' : '42% (Normal)'}
+                  </div>
+                </div>
+
+                <div className="sensor-box">
+                  <div className="sensor-name">Seismic SW-420</div>
+                  <div className={`sensor-val ${sensorAlertMode ? 'alert' : 'normal'}`}>
+                    {sensorAlertMode ? 'VIB_DETECTED' : 'STABLE'}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '12px', textAlign: 'center' }}>
+                <button
+                  className="btn btn-outline"
+                  style={{ fontSize: '11px', padding: '4px 10px', width: '100%' }}
+                  onClick={() => setSensorAlertMode(!sensorAlertMode)}
+                >
+                  ⚡ Toggle Test Simulation: {sensorAlertMode ? 'Hazard Alert State' : 'Normal Operational State'}
+                </button>
+              </div>
             </div>
-            <div className="project-info">
-              <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Arduino Based</span>
-              <h3 className="project-title" id="project-title-fire-detection">AI-Enabled Forest Fire Detection</h3>
+
+            <div className="project-body">
+              <h3 className="project-title">AI-Enabled Forest Fire Detection</h3>
               <p className="project-desc">
-                Developed a sensor-based prototype system that detects early indicators of forest fires and environmental threats.
-                Integrates MQ-2 Gas sensor (smoke/gas), DHT11 (temp/humidity), soil moisture sensors, and SW-420 seismic vibration triggers.
+                An IoT prototype combining multi-sensor microcontrollers (MQ-2 gas/smoke, DHT11 temp/humidity, SW-420 seismic vibration) for early wildfire alert detection in high-risk zones.
               </p>
-              <div className="project-tags">
-                <span className="tag">C/C++</span>
-                <span className="tag">Arduino</span>
-                <span className="tag">IoT Sensors</span>
-                <span className="tag">Disaster Prevention</span>
+
+              <div className="project-tech-tags">
+                <span className="tech-tag">C / C++</span>
+                <span className="tech-tag">Arduino Uno</span>
+                <span className="tech-tag">MQ-2 & DHT11</span>
+                <span className="tech-tag">IoT Alert System</span>
               </div>
-              <div className="project-links">
-                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-fire" target="_blank" rel="noopener noreferrer">
-                  Source Code ↗
-                </a>
-              </div>
+
+              <a
+                href="https://github.com/Vaibhav1214/my-web-portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+                style={{ fontSize: '13px', width: '100%' }}
+              >
+                <Icons.Github /> View Source Code <Icons.ExternalLink />
+              </a>
             </div>
           </div>
 
-          {/* Project 2 */}
-          <div className="project-card" id="project-card-streetlights">
-            <div className="project-img-wrapper">
-              <img src={projectMockupImg} alt="Smart Street Lights Mockup" className="project-img" style={{ filter: 'hue-rotate(180deg)' }} />
+          {/* Project 2: Smart Streetlights */}
+          <div className="project-card">
+            <div className="project-widget">
+              <div className="widget-bar">
+                <span>STREETLIGHT_SIMULATOR</span>
+                <span className="widget-tag" style={{ color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.3)' }}>SIH 2024</span>
+              </div>
+
+              <div className="streetlight-demo">
+                <div className="road-visualization">
+                  <div className="street-lamp">
+                    <div
+                      className="lamp-glow"
+                      style={{
+                        boxShadow: vehiclePassing ? '0 0 24px #f59e0b, 0 0 40px #f59e0b' : '0 0 8px rgba(245, 158, 11, 0.4)',
+                        opacity: vehiclePassing ? 1 : 0.45
+                      }}
+                    ></div>
+                    <span style={{ fontSize: '10px', color: '#94a3b8', marginTop: '2px' }}>
+                      {vehiclePassing ? '100% Brightness' : '50% Idle'}
+                    </span>
+                  </div>
+
+                  <div
+                    className="vehicle-sim"
+                    style={{ transform: vehiclePassing ? 'translateX(30px)' : 'translateX(-30px)' }}
+                  >
+                    🚗
+                  </div>
+                </div>
+
+                <button
+                  className="btn btn-outline"
+                  style={{ fontSize: '11px', padding: '4px 10px', width: '100%' }}
+                  onClick={() => setVehiclePassing(!vehiclePassing)}
+                >
+                  🚙 Click to Simulate Vehicle Passing IR Sensor
+                </button>
+              </div>
             </div>
-            <div className="project-info">
-              <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>SIH 2024 / Arduino</span>
-              <h3 className="project-title" id="project-title-streetlights">Smart Streetlights & Home Automation</h3>
+
+            <div className="project-body">
+              <h3 className="project-title">Smart Streetlights Automation</h3>
               <p className="project-desc">
-                Designed a smart city energy-saving automation system. Uses IR sensors to detect approaching vehicles and dynamically
-                adjust light intensity from 50% to 100%. Incorporates LDR sensors for light-controlled switching and renewable energy inputs.
+                Award-winning Smart India Hackathon project. Energy-saving streetlight network using IR motion sensors to dim lights to 50% during idle periods and boost to 100% when vehicles approach.
               </p>
-              <div className="project-tags">
-                <span className="tag">IoT</span>
-                <span className="tag">SIH 2024</span>
-                <span className="tag">Renewable Energy</span>
-                <span className="tag">Infrared Sensors</span>
+
+              <div className="project-tech-tags">
+                <span className="tech-tag">IoT Hardware</span>
+                <span className="tech-tag">IR Motion Sensor</span>
+                <span className="tech-tag">Energy Automation</span>
+                <span className="tech-tag">SIH 1st Place</span>
               </div>
-              <div className="project-links">
-                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-streetlights" target="_blank" rel="noopener noreferrer">
-                  Source Code ↗
-                </a>
-              </div>
+
+              <a
+                href="https://github.com/Vaibhav1214/my-web-portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+                style={{ fontSize: '13px', width: '100%' }}
+              >
+                <Icons.Github /> View Source Code <Icons.ExternalLink />
+              </a>
             </div>
           </div>
 
-          {/* Project 3 */}
-          <div className="project-card" id="project-card-sdlc-tool">
-            <div className="project-img-wrapper">
-              <img src={projectMockupImg} alt="SDLC Learning Tool Mockup" className="project-img" style={{ filter: 'hue-rotate(45deg)' }} />
+          {/* Project 3: SDLC Tool */}
+          <div className="project-card">
+            <div className="project-widget">
+              <div className="widget-bar">
+                <span>SDLC_WORKFLOW.py</span>
+                <span className="widget-tag" style={{ color: '#a7f3d0', borderColor: 'rgba(167, 243, 208, 0.3)' }}>Python GUI</span>
+              </div>
+
+              <div className="sdlc-flow">
+                {['Requirements', 'Design', 'Development', 'Testing', 'Deployment'].map((step) => (
+                  <div
+                    key={step}
+                    className={`sdlc-step ${sdlcPhase === step ? 'active' : ''}`}
+                    onClick={() => setSdlcPhase(step)}
+                  >
+                    {step}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: '10px', background: '#111827', padding: '8px 10px', borderRadius: '6px', fontSize: '12px', color: '#94a3b8' }}>
+                <strong style={{ color: '#818cf8' }}>Phase: {sdlcPhase}</strong>
+                <p style={{ marginTop: '4px', fontSize: '11px', lineHeight: '1.4' }}>{sdlcDetails[sdlcPhase]}</p>
+              </div>
             </div>
-            <div className="project-info">
-              <span className="timeline-date" style={{ alignSelf: 'flex-start', marginBottom: '10px' }}>Python Tool</span>
-              <h3 className="project-title" id="project-title-sdlc">SDLC Interactive Learning Tool</h3>
+
+            <div className="project-body">
+              <h3 className="project-title">SDLC Interactive Learning Tool</h3>
               <p className="project-desc">
-                Created an interactive educational software application to teach the Software Development Life Cycle phases.
-                Users can click through stages (Requirements, Design, Coding, Testing, Deployment) to render theory details and flow workflows.
+                Educational desktop application that models the Software Development Life Cycle phases. Provides visual step-by-step guidance on requirements analysis, architectural design, testing, and deployment.
               </p>
-              <div className="project-tags">
-                <span className="tag">Python</span>
-                <span className="tag">GUI Systems</span>
-                <span className="tag">Software Engineering</span>
+
+              <div className="project-tech-tags">
+                <span className="tech-tag">Python</span>
+                <span className="tech-tag">GUI Interface</span>
+                <span className="tech-tag">Software Engineering</span>
               </div>
-              <div className="project-links">
-                <a href="https://github.com/Vaibhav1214/my-web-portfolio" className="project-link" id="project-link-repo-sdlc" target="_blank" rel="noopener noreferrer">
-                  Source Code ↗
-                </a>
-              </div>
+
+              <a
+                href="https://github.com/Vaibhav1214/my-web-portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+                style={{ fontSize: '13px', width: '100%' }}
+              >
+                <Icons.Github /> View Source Code <Icons.ExternalLink />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills & Tech Stack Section */}
       <section className="section-padding container" id="skills">
-        <h2 className="section-title text-gradient" id="skills-section-heading">Skills & Tech Stack</h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 40px 0', textAlign: 'left' }}>
-          Technologies and core academic concepts I study and apply in software engineering projects.
-        </p>
+        <div className="section-header">
+          <div className="section-tag">Competencies</div>
+          <h2 className="section-title">Skills & Tech Stack</h2>
+          <p className="section-desc">
+            Core programming languages, web technologies, and computer science fundamentals.
+          </p>
+        </div>
 
-        <div className="skills-container" id="portfolio-skills-container">
-          <div className="skills-category" id="skills-category-programming">
-            <h3 className="skills-category-title">Programming Languages</h3>
+        <div className="cards-grid-3">
+          {/* Languages */}
+          <div className="skills-category-box">
+            <div className="skills-category-title">
+              <Icons.Code /> Languages
+            </div>
             <div className="skills-grid">
-              <div className="skill-badge" id="skill-badge-c">
-                <span className="skill-icon-orange">✦</span> C
+              <div className="skill-badge-card">
+                <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>C++</span> C++
               </div>
-              <div className="skill-badge" id="skill-badge-cpp">
-                <span className="skill-icon-blue">⚛</span> C++
+              <div className="skill-badge-card">
+                <span style={{ color: '#818cf8', fontWeight: 'bold' }}>C</span> C Language
               </div>
-              <div className="skill-badge" id="skill-badge-python">
-                <span className="skill-icon-orange">⚡</span> Python
+              <div className="skill-badge-card">
+                <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>Py</span> Python
               </div>
-              <div className="skill-badge" id="skill-badge-java">
-                <span className="skill-icon-blue">💻</span> Java
+              <div className="skill-badge-card">
+                <span style={{ color: '#ef4444', fontWeight: 'bold' }}>☕</span> Java
               </div>
             </div>
           </div>
 
-          <div className="skills-category" id="skills-category-web">
-            <h3 className="skills-category-title">Web Development</h3>
+          {/* Web Tech */}
+          <div className="skills-category-box">
+            <div className="skills-category-title">
+              <Icons.Terminal /> Web Technologies
+            </div>
             <div className="skills-grid">
-              <div className="skill-badge" id="skill-badge-html">
-                <span className="skill-icon-orange">✦</span> HTML5
+              <div className="skill-badge-card">
+                <span style={{ color: '#61dafb', fontWeight: 'bold' }}>⚛</span> React.js
               </div>
-              <div className="skill-badge" id="skill-badge-css">
-                <span className="skill-icon-blue">🎨</span> CSS3
+              <div className="skill-badge-card">
+                <span style={{ color: '#f7df1e', fontWeight: 'bold' }}>JS</span> JavaScript
               </div>
-              <div className="skill-badge" id="skill-badge-js">
-                <span className="skill-icon-orange">⚡</span> JavaScript
+              <div className="skill-badge-card">
+                <span style={{ color: '#e34f26', fontWeight: 'bold' }}>H5</span> HTML5
               </div>
-              <div className="skill-badge" id="skill-badge-sql">
-                <span className="skill-icon-blue">📦</span> SQL Databases
+              <div className="skill-badge-card">
+                <span style={{ color: '#1572b6', fontWeight: 'bold' }}>C3</span> CSS3
+              </div>
+              <div className="skill-badge-card">
+                <span style={{ color: '#00758f', fontWeight: 'bold' }}>SQL</span> SQL DBs
+              </div>
+              <div className="skill-badge-card">
+                <span style={{ color: '#f05032', fontWeight: 'bold' }}>Git</span> Git & GitHub
               </div>
             </div>
           </div>
 
-          <div className="skills-category" id="skills-category-concepts">
-            <h3 className="skills-category-title">Core Computer Science Concepts</h3>
+          {/* Computer Science Core */}
+          <div className="skills-category-box">
+            <div className="skills-category-title">
+              <Icons.Cpu /> CS Fundamentals
+            </div>
             <div className="skills-grid">
-              <div className="skill-badge" id="skill-badge-dsa">
-                <span className="skill-icon-orange">⚙</span> Data Structures & Algorithms
-              </div>
-              <div className="skill-badge" id="skill-badge-oop">
-                <span className="skill-icon-blue">✓</span> Object-Oriented Programming (OOP)
-              </div>
-              <div className="skill-badge" id="skill-badge-daa">
-                <span className="skill-icon-orange">⚡</span> DAA (Design & Analysis of Algorithms)
-              </div>
-              <div className="skill-badge" id="skill-badge-dbms">
-                <span className="skill-icon-blue">🔍</span> DBMS
-              </div>
-              <div className="skill-badge" id="skill-badge-os">
-                <span className="skill-icon-orange">✦</span> Operating Systems (OS)
-              </div>
-              <div className="skill-badge" id="skill-badge-cn">
-                <span className="skill-icon-blue">🌐</span> Computer Networks (CN)
-              </div>
+              <div className="skill-badge-card">DSA (Data Structures)</div>
+              <div className="skill-badge-card">OOP Principles</div>
+              <div className="skill-badge-card">DBMS & SQL</div>
+              <div className="skill-badge-card">Operating Systems</div>
+              <div className="skill-badge-card">Computer Networks</div>
+              <div className="skill-badge-card">Arduino / IoT</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications & Achievements Section */}
-      <section className="section-padding container" id="certifications" style={{ borderTop: '1px solid var(--border-color)' }}>
-        <h2 className="section-title text-gradient" id="certs-heading">Qualifications & Achievements</h2>
-        <div className="cards-grid-2col">
+      {/* Certifications & Achievements */}
+      <section className="section-padding container">
+        <div className="cards-grid-2">
           {/* Certifications */}
-          <div className="info-card" id="certifications-card">
-            <h3 className="info-card-title">Professional Certifications</h3>
-            <ul className="info-list">
-              <li className="info-list-item">
-                <strong>Google Student Ambassador Program</strong> — Participation Certificate (2025)
-              </li>
-              <li className="info-list-item">
-                <strong>Financial Education for Young Citizens</strong> — NISM & Aditya Birla Capital Foundation (2025)
-              </li>
-              <li className="info-list-item">
-                <strong>Digital Literacy Certification</strong> — PMGDISHA, Government of India (2021)
-              </li>
+          <div className="card">
+            <h3 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--text-primary)' }}>Certifications & Training</h3>
+            <ul className="timeline-bullets">
+              <li><strong>Google Student Ambassador Program</strong> — Participation Certificate (2025)</li>
+              <li><strong>Financial Education for Young Citizens</strong> — NISM & Aditya Birla Capital Foundation (2025)</li>
+              <li><strong>Digital Literacy Certification</strong> — PMGDISHA, Government of India (2021)</li>
             </ul>
           </div>
 
-          {/* Achievements & Activities */}
-          <div className="info-card" id="achievements-card">
-            <h3 className="info-card-title">Achievements & Activities</h3>
-            <ul className="info-list">
-              <li className="info-list-item">
-                <strong>1st Place</strong> — Internal Smart India Hackathon (SIH), Sept 2024
-              </li>
-              <li className="info-list-item">
-                Active participation in sports events at school and college level
-              </li>
-              <li className="info-list-item">
-                Engaged in quizzes and academic contests with strong placements
-              </li>
-              <li className="info-list-item">
-                Involved in debates and public speaking, developing communication skills
-              </li>
-              <li className="info-list-item">
-                Performed in skits and cultural activities, contributing to creative team projects
-              </li>
+          {/* Achievements */}
+          <div className="card">
+            <h3 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--text-primary)' }}>Key Achievements</h3>
+            <ul className="timeline-bullets">
+              <li><strong>1st Place Winner</strong> — Internal Smart India Hackathon (SIH 2024) for IoT Streetlight Automation.</li>
+              <li>Active participant in academic programming contests & technical quizzes.</li>
+              <li>Engaged in college debate, public speaking events, and team presentation activities.</li>
             </ul>
           </div>
         </div>
@@ -561,39 +697,37 @@ function App() {
 
       {/* Contact Section */}
       <section className="section-padding container" id="contact">
-        <h2 className="section-title text-gradient" id="contact-section-heading">Let's Connect</h2>
-
         <div className="contact-grid">
-          <div className="contact-info" id="portfolio-contact-info-panel">
-            <h3 className="contact-title" id="contact-panel-heading">Have a project or opportunity?</h3>
-            <p className="contact-desc" id="contact-panel-description">
-              I am currently open to internship opportunities, student collaborations, and web development projects.
-              Fill out the form or reach out directly via email.
+          <div className="contact-card">
+            <div className="section-tag">Get In Touch</div>
+            <h2 className="section-title" style={{ fontSize: '28px' }}>Let's Connect</h2>
+            <p className="section-desc" style={{ fontSize: '14px' }}>
+              I am open for internships, software engineering projects, and open-source collaborations. Feel free to reach out directly.
             </p>
 
-            <div className="contact-details" id="contact-details-list">
-              <div className="contact-item" id="contact-item-email">
-                <div className="contact-icon-wrapper">✉</div>
+            <div className="contact-info-list">
+              <div className="contact-item">
+                <div className="contact-icon"><Icons.Mail /></div>
                 <div>
-                  <div className="contact-label">Email Me</div>
+                  <div className="contact-label">Email</div>
                   <div className="contact-value">
-                    <a href="mailto:mishravaibhav1214@gmail.com" id="contact-email-link">mishravaibhav1214@gmail.com</a>
+                    <a href="mailto:mishravaibhav1214@gmail.com">mishravaibhav1214@gmail.com</a>
                   </div>
                 </div>
               </div>
 
-              <div className="contact-item" id="contact-item-location">
-                <div className="contact-icon-wrapper">📍</div>
+              <div className="contact-item">
+                <div className="contact-icon"><Icons.Location /></div>
                 <div>
                   <div className="contact-label">Location</div>
-                  <div className="contact-value">Lalkuan, Nainital, India</div>
+                  <div className="contact-value">Lalkuan, Nainital, Uttarakhand, India</div>
                 </div>
               </div>
 
-              <div className="contact-item" id="contact-item-linkedin">
-                <div className="contact-icon-wrapper">💼</div>
+              <div className="contact-item">
+                <div className="contact-icon"><Icons.Linkedin /></div>
                 <div>
-                  <div className="contact-label">LinkedIn</div>
+                  <div className="contact-label">LinkedIn Profile</div>
                   <div className="contact-value">
                     <a href="https://linkedin.com/in/vaibhav-mishra-04578a290" target="_blank" rel="noopener noreferrer">
                       vaibhav-mishra-04578a290
@@ -604,78 +738,96 @@ function App() {
             </div>
           </div>
 
-          <form className="contact-form" id="contact-form-element" onSubmit={handleContactSubmit}>
-            {formSubmitted && (
-              <div className="form-success-msg" id="contact-form-success-alert">
-                ✓ Message sent successfully! I will get back to you soon.
+          {/* Form */}
+          <div className="contact-card">
+            <h3 style={{ fontSize: '20px', marginBottom: '20px' }}>Send a Message</h3>
+            
+            <form onSubmit={handleContactSubmit}>
+              {formSubmitted && (
+                <div className="form-success-alert">
+                  ✓ Message sent successfully! I will reply as soon as possible.
+                </div>
+              )}
+
+              <div className="form-group">
+                <label htmlFor="contact-name">Your Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="contact-name"
+                  name="name"
+                  required
+                  placeholder="e.g. Rahul Sharma"
+                  value={formName}
+                  onChange={(e) => setFormName(e.target.value)}
+                />
               </div>
-            )}
 
-            <div className="form-group" id="form-group-name">
-              <label htmlFor="contact-name">Name</label>
-              <input
-                type="text"
-                className="form-control"
-                id="contact-name"
-                name="name"
-                required
-                placeholder="Your Name"
-                value={formName}
-                onChange={(e) => setFormName(e.target.value)}
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="contact-email">Your Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="contact-email"
+                  name="email"
+                  required
+                  placeholder="e.g. rahul@example.com"
+                  value={formEmail}
+                  onChange={(e) => setFormEmail(e.target.value)}
+                />
+              </div>
 
-            <div className="form-group" id="form-group-email">
-              <label htmlFor="contact-email">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="contact-email"
-                name="email"
-                required
-                placeholder="your.email@example.com"
-                value={formEmail}
-                onChange={(e) => setFormEmail(e.target.value)}
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="contact-message">Message</label>
+                <textarea
+                  className="form-control"
+                  id="contact-message"
+                  name="message"
+                  required
+                  placeholder="Write your inquiry or project message here..."
+                  value={formMessage}
+                  onChange={(e) => setFormMessage(e.target.value)}
+                />
+              </div>
 
-            <div className="form-group" id="form-group-message">
-              <label htmlFor="contact-message">Message</label>
-              <textarea
-                className="form-control"
-                id="contact-message"
-                name="message"
-                required
-                placeholder="Write your message here..."
-                value={formMessage}
-                onChange={(e) => setFormMessage(e.target.value)}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary"
-              id="contact-submit-button"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                style={{ width: '100%', padding: '12px' }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+            </form>
+          </div>
         </div>
       </section>
 
-      {/* Footer Section */}
-      <footer className="footer" id="portfolio-footer">
+      {/* Footer */}
+      <footer className="footer">
         <div className="container footer-content">
-          <div className="footer-copy" id="footer-copyright-text">
-            © {new Date().getFullYear()} Vaibhav Mishra. All rights reserved.
+          <div className="footer-copy">
+            © {new Date().getFullYear()} Vaibhav Mishra • Engineered with React & Modern Web Standards
           </div>
-          <div className="social-links" id="footer-social-links">
-            <a href="https://github.com/Vaibhav1214/my-web-portfolio" target="_blank" rel="noopener noreferrer" className="social-btn" id="social-link-github" aria-label="GitHub Profile">
-              🐙
+
+          <div className="social-links">
+            <a
+              href="https://github.com/Vaibhav1214"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-btn"
+              aria-label="GitHub"
+            >
+              <Icons.Github />
             </a>
-            <a href="https://linkedin.com/in/vaibhav-mishra-04578a290" target="_blank" rel="noopener noreferrer" className="social-btn" id="social-link-linkedin-footer" aria-label="LinkedIn Profile">
-              💼
+            <a
+              href="https://linkedin.com/in/vaibhav-mishra-04578a290"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-btn"
+              aria-label="LinkedIn"
+            >
+              <Icons.Linkedin />
             </a>
           </div>
         </div>
